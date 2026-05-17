@@ -6,34 +6,7 @@ author = "primiti_ve"
 [workflow.env]
 shell = "pwsh"
 
-[workflow.arguments.message]
-name = "title"
-type = "positional"
-required = true
-
-[workflow.arguments.description]
-name = "description"
-type = "positional"
-default = ""
-required = false
-
-[workflow.steps.add]
-command = "git"
-arguments = ["add", "-A"]
-order = 1
-
-[workflow.steps.commit]
-command = "git"
-arguments = {
-    if description != "" {
-        ["commit", "-m", "{{title}}", "-m", "{{description}}"]
-    } else {
-        ["commit", "-m", "{{title}}"]
-    }
-}
-order = 2
-
-[workflow.steps.push]
+[workflow.steps."push commits"]
 command = "git"
 arguments = ["push", "origin", "main"]
-order = 3
+order = 1
